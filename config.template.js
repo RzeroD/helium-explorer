@@ -4,14 +4,14 @@
  */
 const config = {
   'api': {
-    'host': 'https://explorer.bulwarkcrypto.com',
-    'port': '443',
+    'host': 'https://heliumchain.info',
+    'port': '3000',
     'prefix': '/api',
     'timeout': '5s'
   },
   'coinMarketCap': {
     'api': 'http://api.coinmarketcap.com/v1/ticker/',
-    'ticker': 'bulwark'
+    'ticker': 'spreadcoin'
   },
   'db': {
     'host': '127.0.0.1',
@@ -25,8 +25,8 @@ const config = {
   },
   'rpc': {
     'host': '127.0.0.1',
-    'port': '52541',
-    'user': 'bulwarkrpc',
+    'port': '19009',
+    'user': 'heliumrpc',
     'pass': 'someverysafepassword',
     'timeout': 8000, // 8 seconds
   }
