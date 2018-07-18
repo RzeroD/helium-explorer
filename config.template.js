@@ -11,7 +11,7 @@ const config = {
   },
   'coinMarketCap': {
     'api': 'http://api.coinmarketcap.com/v1/ticker/',
-    'ticker': 'helium'
+    'ticker': 'bulwark'
   },
   'db': {
     'host': '127.0.0.1',

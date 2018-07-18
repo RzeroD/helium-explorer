@@ -31,10 +31,6 @@ export default class CardStatus extends Component {
       <div className="animated fadeInUp">
       <Card title="Status" className="card--status" >
         <div className="card__row">
-          <span className="card__label">Chain:</span>
-          {config.coin.testnet ? 'TestNet' : 'MainNet' }
-        </div>
-        <div className="card__row">
           <span className="card__label">Status:</span>
           <span className="card__result card__result--status">
             <span className={ `u--text-${ isOn ? 'green' : 'red' }`}>
