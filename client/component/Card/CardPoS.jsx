@@ -19,14 +19,19 @@ const CardPoS = ({ average, height, posHeight }) => {
     dur = blocks * average;
   }
   // Convert to hours.
-  else if (dur > 60) {
+  else if (dur > 60 && dur < 1440) {
     label = 'hours';
     dur /= 60.0;
+  }
+  // Convert to days.
+  else {
+    label = 'days';
+    dur /= 1440.0;
   }
 
   return (
     <div className="watch-list">
-      <p className="watch-list__title">PoS Changeover</p>
+      <p className="watch-list__title">Change to PoS</p>
       <div className="animated fadeIn">
         <div className="watch-list__item back-green">
           <div>

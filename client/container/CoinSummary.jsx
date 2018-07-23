@@ -14,7 +14,6 @@ import CardPoS from '../component/Card/CardPoS';
 import CardPoSCalc from '../component/Card/CardPoSCalc';
 import CardStatus from '../component/Card/CardStatus';
 import WatchList from '../component/WatchList';
-import CardSeeSaw from '../component/Card/CardSeeSaw';
 
 class CoinSummary extends Component {
   static propTypes = {
@@ -46,7 +45,7 @@ class CoinSummary extends Component {
             <div className="row">
               <div className="col-md-12 col-lg-6">
                 <CardStatus
-                  avgBlockTime={ coin.avgBlockTime }
+                  avgBlockTime={ coin.avgBlockTime?coin.avgBlockTime:0 }
                   avgMNTime={ coin.avgMNTime }
                   blocks={ height }
                   peers={ coin.peers }
@@ -75,13 +74,9 @@ class CoinSummary extends Component {
           </div>
           <div className="col-md-12 col-lg-3">
             <CardPoS
-              average={ coin.avgBlockTime }
+              average={ coin.avgBlockTime?coin.avgBlockTime:0 }
               height={ height }
               posHeight={ blockchain.params.LAST_POW_BLOCK } />
-            <CardSeeSaw
-              average={ coin.avgBlockTime }
-              height={ height }
-              ssHeight={ blockchain.params.LAST_SEESAW_BLOCK } />
             <WatchList
               items={ watchlist }
               onSearch={ this.props.onSearch }
