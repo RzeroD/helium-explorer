@@ -46,8 +46,7 @@ export default class CardPoSCalc extends React.Component {
               value={ this.state.amount } />
           </div>
           <div className="col-sm-12 col-md-4 text-center">
-            <button
-              <button onClick={ this.handleClick }>
+            <button onClick={ this.handleClick }>
               Estimate
             </button>
           </div>

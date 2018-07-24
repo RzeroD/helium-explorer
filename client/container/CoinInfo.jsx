@@ -58,7 +58,8 @@ class CoinInfo extends Component {
           <div className="col-md-12 col-lg-4">
             <CardROI
               coin={ this.props.coin }
-              supply={ this.state.supply } />          </div>
+              supply={ this.state.supply } />
+            </div>
           </div>
       </div>
     );

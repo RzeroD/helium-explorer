@@ -91,7 +91,7 @@ installBulwark () {
     echo "Installing Bulwark..."
     mkdir -p /tmp/bulwark
     cd /tmp/bulwark
-    curl -Lo bulwark.tar.gz $bwklink
+    curl -Lo bulwark.tar.gz $hlmlink
     tar -xzf bulwark.tar.gz
     sudo mv ./bin/* /usr/local/bin
     cd
@@ -189,10 +189,10 @@ clear
 
 # Variables
 echo "Setting up variables..."
-bwklink=`curl -s https://api.github.com/repos/bulwark-crypto/bulwark/releases/latest | grep browser_download_url | grep linux64 | cut -d '"' -f 4`
+hlmlink=`curl -s https://api.github.com/repos/bulwark-crypto/bulwark/releases/latest | grep browser_download_url | grep linux64 | cut -d '"' -f 4`
 rpcuser=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13 ; echo '')
 rpcpassword=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32 ; echo '')
-echo "Repo: $bwklink"
+echo "Repo: $hlmlink"
 echo "PWD: $PWD"
 echo "User: $rpcuser"
 echo "Pass: $rpcpassword"

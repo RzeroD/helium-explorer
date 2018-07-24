@@ -29,9 +29,6 @@ const config = {
     'user': 'heliumrpc',
     'pass': 'someverysafepassword',
     'timeout': 8000, // 8 seconds
-  },
-  'coin':{
-    'testnet':true,
   }
 };
 
