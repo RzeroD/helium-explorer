@@ -34,7 +34,7 @@ class CoinSummary extends Component {
       ? this.props.txs[0].blockHeight
       : coin.blocks;
 
-    const watchlist = height >= blockchain.params.LAST_POW_BLOCK && height >= blockchain.params.LAST_SEESAW_BLOCK
+    const watchlist = height >= blockchain.params.LAST_POW_BLOCK
       ? this.props.searches
       : this.props.searches.slice(0, 7);
 

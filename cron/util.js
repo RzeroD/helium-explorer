@@ -64,7 +64,7 @@ async function vout(rpctx, blockHeight) {
 
       const to = {
         blockHeight,
-        address: vout.scriptPubKey.addresses[0],
+        address: address,
         n: vout.n,
         value: vout.value
       };

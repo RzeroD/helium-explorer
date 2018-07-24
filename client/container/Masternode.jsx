@@ -118,7 +118,7 @@ class Masternode extends Component {
                   { `${ mn.addr.substr(0, 20) }...` }
                 </Link>
               ),
-              lastPaidAt: isEpoch ? 'N/A' : dateFormat(mn.lastPaidAt),
+              lastPaidAt: isEpoch ? 'No payments yet' : dateFormat(mn.lastPaidAt),
               txHash: (
                 <Link to={ `/tx/${ mn.txHash }` }>
                   { `${ mn.txHash.substr(0, 20) }...` }
