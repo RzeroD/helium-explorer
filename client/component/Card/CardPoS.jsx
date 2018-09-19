@@ -31,7 +31,7 @@ const CardPoS = ({ average, height, posHeight }) => {
 
   return (
     <div className="watch-list">
-      <p className="watch-list__title">Change to PoS</p>
+      <p className="watch-list__title">Reduced Rewards</p>
       <div className="animated fadeIn">
         <div className="watch-list__item back-green">
           <div>

@@ -17,7 +17,7 @@ const CardEarnings = ({ coin }) => {
   const nusd = v => numeral(v).format('$0,0.00');
 
   return (
-    <Card title="Estimated Earnings (COIN/BTC/USD)">
+    <Card title="Estimated Earnings (HLM/BTC/USD)">
       <div className="row">
         <div className="col-sm-12 col-md-3">
           DAILY
