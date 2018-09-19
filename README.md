@@ -1,13 +1,13 @@
 ![Bulwark Logo](https://bulwarkcrypto.com/wp-content/uploads/2018/04/blockexplorer.svg)
 
-Bulwark Block Explorer 
+Helium Block Explorer 
 =====
 [![GitHub license](https://img.shields.io/github/license/bulwark-crypto/bulwark-explorer.svg)](https://github.com/bulwark-crypto/bulwark-explorer/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/bulwark-crypto/bulwark-explorer.svg)](https://github.com/bulwark-crypto/bulwark-explorer/issues) [![Discord](https://img.shields.io/discord/374271866308919296.svg)](https://discord.me/bulwarkcrypto) <a href="https://twitter.com/intent/follow?screen_name=bulwarkcoin"> <img src="https://img.shields.io/twitter/follow/bulwarkcoin.svg?style=social&logo=twitter" alt="follow on Twitter"></a>
 
 Simple cryptocurrency block explorer system.
 
 ## Required
-This repo assumes `git`, `mongodb`, `node`, `yarn`, and are installed with configuration done.  Please adjust commands to your local environment. 
+This repo assumes `git`, `mongodb`, `node`, `yarn`, and are installed with configuration done.  Please adjust commands to your local environment.
 
 Download links:
 

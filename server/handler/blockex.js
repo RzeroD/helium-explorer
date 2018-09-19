@@ -12,6 +12,7 @@ const Peer = require('../../model/peer');
 const Rich = require('../../model/rich');
 const TX = require('../../model/tx');
 const UTXO = require('../../model/utxo');
+const STXO = require('../../model/stxo');
 
 /**
  * Get transactions and unspent transactions by address.
@@ -20,13 +21,6 @@ const UTXO = require('../../model/utxo');
  */
 const getAddress = async (req, res) => {
   try {
-    const txs = await TX
-      .aggregate([
-        { $match: { 'vout.address': req.params.hash } },
-        { $sort: { blockHeight: -1 } }
-      ])
-      .allowDiskUse(true)
-      .exec();
     const utxo = await UTXO
       .aggregate([
           { $match: { address: req.params.hash } },
@@ -34,11 +28,39 @@ const getAddress = async (req, res) => {
       ])
       .allowDiskUse(true)
       .exec();
+    const stxo = await STXO
+      .aggregate([
+        { $match: { address: req.params.hash } },
+        { $sort: { blockHeight: -1 } }
+      ])
+      .allowDiskUse(true)
+      .exec();
+    const targetTxs = stxo.map(tx => `${ tx.txId }`)
+    const txs = await TX
+      .aggregate([
+        {$match: {$or: [{'vout.address': req.params.hash},{txId:{ $in: targetTxs }}]}},
+        { $sort: { blockHeight: -1 } }
+      ])
+      .allowDiskUse(true)
+      .exec();
+    const receivedTxs = await TX
+      .aggregate([
+          { $match: { 'vout.address': req.params.hash } },
+          { $sort: { blockHeight: -1 } }
+      ])
+      .allowDiskUse(true)
+      .exec();
 
     const balance = utxo.reduce((acc, tx) => acc + tx.value, 0.0);
-    const received = txs.reduce((acc, tx) => acc + tx.vout.reduce((a, t) => a + t.value, 0.0), 0.0);
+    const received = receivedTxs.reduce((acc, tx) => acc + tx.vout.reduce((a, t) => {
+      if (t.address === req.params.hash) {
+        return a + t.value
+      } else {
+        return a
+      }
+    }, 0.0), 0.0);
 
-    res.json({ balance, received, txs, utxo });
+    res.json({ balance, received, txs, utxo, stxo });
   } catch(err) {
     console.log(err);
     res.status(500).send(err.message || err);
@@ -431,7 +453,9 @@ const getTX = async (req, res) => {
     await forEach(tx.vin, async (vi) => {
       if (tx.vout[0].address === 'NON_STANDARD'){
         vin.push({coinstake:true});
-      } else if (vi.txId) {
+      } else if(vi.isZcSpend){
+        vin.push({isZcSpend:true, value: vi.sequence});
+      }else if (vi.txId) {
         const t = await TX.findOne({ txId: vi.txId });
         if (!!t) {
           t.vout.forEach((vo) => {

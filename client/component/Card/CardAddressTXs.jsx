@@ -12,13 +12,15 @@ export default class CardAddressTXs extends Component {
   static defaultProps = {
     address: '',
     txs: [],
-    utxo: []
+    utxo: [],
+    stxo: []
   };
 
   static propTypes = {
     address: PropTypes.string.isRequired,
     txs: PropTypes.array.isRequired,
-    utxo: PropTypes.array.isRequired
+    utxo: PropTypes.array.isRequired,
+    stxo: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -33,30 +35,38 @@ export default class CardAddressTXs extends Component {
   };
 
   render() {
-    const spentTXs = new Set(
+    const unspentTXs = new Set(
       this.props.utxo.map(tx => `${ tx.txId }:${ tx.n }`)
     );
-
+    const spentTXs = new Set(
+      this.props.stxo.map(tx => `${ tx.txId }`)
+    );
     return (
       <div className="animated fadeIn">
       <Table
         cols={ this.state.cols }
         data={ this.props.txs.map((tx) => {
-          let amount = 0.0;
-          let isSpent = false;
-          tx.vout.forEach((vout) => {
-            if (vout.address === this.props.address) {
-              amount += vout.value;
-              isSpent = !spentTXs.has(`${ tx.txId }:${ vout.n }`);
+          let inAmount = 0.0;
+          let outAmount = 0.0;
+          this.props.stxo.forEach((stx) => {
+            if (stx.txId === tx.txId) {
+              inAmount += stx.value;
             }
           });
+          tx.vout.forEach((vout) => {
+            if (vout.address === this.props.address) {
+              outAmount += vout.value;
+            }
+          });
+          let isSpent = inAmount > outAmount
+          let amount = outAmount - inAmount
 
           return ({
             ...tx,
             amount: (
               <span
                 className={ `badge badge-${ isSpent ? 'danger' : 'success' }` }>
-                { isSpent ? '-' : ''}{ numeral(amount).format('0,0.0000') } HLM
+                { numeral(amount).format('0,0.0000') } HLM
               </span>
             ),
             createdAt: dateFormat(tx.createdAt),

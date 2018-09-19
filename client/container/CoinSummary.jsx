@@ -34,7 +34,7 @@ class CoinSummary extends Component {
       ? this.props.txs[0].blockHeight
       : coin.blocks;
 
-    const watchlist = height >= blockchain.params.LAST_POW_BLOCK
+    const watchlist = height >= blockchain.params.LAST_REDUCTION_BLOCK
       ? this.props.searches
       : this.props.searches.slice(0, 7);
 
@@ -76,7 +76,7 @@ class CoinSummary extends Component {
             <CardPoS
               average={ coin.avgBlockTime?coin.avgBlockTime:0 }
               height={ height }
-              posHeight={ blockchain.params.LAST_POW_BLOCK } />
+              posHeight={ blockchain.params.LAST_REDUCTION_BLOCK } />
             <WatchList
               items={ watchlist }
               onSearch={ this.props.onSearch }
