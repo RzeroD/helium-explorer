@@ -384,9 +384,10 @@ const getSupply = async (req, res) => {
     const utxo = await UTXO.aggregate([
       { $group: { _id: 'supply', total: { $sum: '$value' } } }
     ]);
+    const coin = await Coin.findOne().sort({ createdAt: -1 });
 
     t = utxo[0].total;
-    c = t;
+    c = t - (coin.mnsOff + coin.mnsOn)*1000;
 
     res.json({ c, t });
   } catch(err) {

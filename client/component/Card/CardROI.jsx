@@ -43,7 +43,7 @@ const CardROI = ({ coin, supply }) => {
         Coin Supply (Circulating)
       </div>
       <div className="h3">
-        { numeral(supply ? supply.c - (mns * mncoins) : 0.0).format('0,0.0000') } HLM
+        { numeral(supply ? supply.c : 0.0).format('0,0.0000') } HLM
       </div>
     </div>
     <div className="mb-3">

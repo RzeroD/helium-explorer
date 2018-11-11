@@ -10,8 +10,8 @@ const config = {
     'timeout': '5s'
   },
   'coinMarketCap': {
-    'api': 'http://api.coinmarketcap.com/v1/ticker/',
-    'ticker': 'spreadcoin'
+    'api': 'https://api.coinmarketcap.com/v1/ticker/',
+    'ticker': 'helium'
   },
   'db': {
     'host': '127.0.0.1',

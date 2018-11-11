@@ -12,6 +12,7 @@ import Select from '../component/Select';
 class PoS extends Component {
   static propTypes = {
     coin: PropTypes.object.isRequired,
+    block: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired
   };
 
@@ -66,7 +67,7 @@ class PoS extends Component {
       return 0.0;
     }
 
-    return (blockchain.mncoins / pos) * this.props.coin.avgMNTime;
+    return this.props.coin.diff/pos;
   };
 
   renderMasternodeCount = () => {
