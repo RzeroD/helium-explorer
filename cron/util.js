@@ -83,29 +83,54 @@ async function vout(rpctx, blockHeight) {
     const utxo = [];
     rpctx.vout.forEach((vout) => {
         var address;
-        if (vout.scriptPubKey.type == 'nulldata') {
-          address = "OP_RETURN "+hexToString(vout.scriptPubKey.asm.substring(10))
-        }else if (vout.scriptPubKey.type == 'zerocoinmint') {
-          address = 'ZERO_COIN_MINT'
-        } else if (vout.scriptPubKey.type == 'nonstandard') {
-          address = 'NON_STANDARD'
-        } else {
-          address = vout.scriptPubKey.addresses[0]
-      }
 
-      const to = {
-        blockHeight,
-        address: address,
-        n: vout.n,
-        value: vout.value
-      };
+        if (vout.value <= 0) {
+          return;
+        }
 
-      txout.push(to);
-      utxo.push({
-        ...to,
-        _id: `${ rpctx.txid }:${ vout.n }`,
-        txId: rpctx.txid
-      });
+        if (vout.scriptPubKey.type == "zerocoinmint") {
+          // zerocoin
+          const to = {
+            blockHeight,
+            address: "ZEROCOIN_MINT_POOL",
+            n: vout.n,
+            value: vout.value
+          };
+          txout.push(to);
+          utxo.push({
+            ...to,
+            _id: `${ rpctx.txid }:${ vout.n }`,
+            txId: rpctx.txid
+          });
+        } else if (vout.scriptPubKey.type == "nulldata") {
+          // fee of proposal
+          const to = {
+            blockHeight,
+            address: "FEE_OF_SUBMISSION_PROPOSAL",
+            n: vout.n,
+            value: vout.value
+          };
+          txout.push(to);
+          utxo.push({
+            ...to,
+            _id: `${ rpctx.txid }:${ vout.n }`,
+            txId: rpctx.txid
+          });
+        }  else {
+          // normal
+          const to = {
+            blockHeight,
+            address: vout.scriptPubKey.addresses[0],
+            n: vout.n,
+            value: vout.value
+          };
+          txout.push(to);
+          utxo.push({
+            ...to,
+            _id: `${ rpctx.txid }:${ vout.n }`,
+            txId: rpctx.txid
+          });
+        }
     });
 
     // Insert unspent transactions.
