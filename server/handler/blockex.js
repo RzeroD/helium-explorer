@@ -21,7 +21,7 @@ const STXO = require('../../model/stxo');
  */
 const getAddress = async (req, res) => {
   try {
-    const utxo = await UTXO
+    const qutxo = UTXO
       .aggregate([
           { $match: { address: req.params.hash } },
           { $sort: { blockHeight: -1 } }
@@ -36,9 +36,29 @@ const getAddress = async (req, res) => {
       .allowDiskUse(true)
       .exec();
     const targetTxs = stxo.map(tx => `${ tx.txId }`)
-    const txs = await TX
+    const qtxs = TX
       .aggregate([
         {$match: {$or: [{'vout.address': req.params.hash},{txId:{ $in: targetTxs }}]}},
+        {
+          $project:
+          {
+            vout:
+            {
+              $filter:
+              {
+                input: '$vout',
+                as: 'v',
+                cond: { $eq: ['$$v.address', req.params.hash] }
+              }
+            },
+            blockHash:1,
+            blockHeight:1,
+            createdAt:1,
+            txId:1,
+            version:1,
+            vin:1,
+          }
+        },
         { $sort: { blockHeight: -1 } }
       ])
       .allowDiskUse(true)
@@ -51,6 +71,8 @@ const getAddress = async (req, res) => {
       .allowDiskUse(true)
       .exec();
 
+    const txs = await qtxs;
+    const utxo = await qutxo;
     const balance = utxo.reduce((acc, tx) => acc + tx.value, 0.0);
     const received = receivedTxs.reduce((acc, tx) => acc + tx.vout.reduce((a, t) => {
       if (t.address === req.params.hash) {

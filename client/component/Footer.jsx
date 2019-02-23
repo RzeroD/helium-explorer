@@ -57,7 +57,7 @@ class Footer extends Component {
               <a href="https://bitcointalk.org/index.php?topic=1809278.0" target="_blank">
                 <Icon name="bitcoin" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://discord.gg" target="_blank">
+              <a href="https://discord.gg/9Evn2zT" target="_blank">
                 <Icon name="discord" className="fab footer__social-media-icon" />
               </a>
               <a href="https://t.me/HeliumChain" target="_blank">

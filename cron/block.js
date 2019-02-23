@@ -22,11 +22,12 @@ async function syncBlocks(start, stop, clean = false) {
     await UTXO.remove({ blockHeight: { $gte: start, $lte: stop } });
   }
 
+  let block;
   for(let height = start; height <= stop; height++) {
     const hash = await rpc.call('getblockhash', [height]);
     const rpcblock = await rpc.call('getblock', [hash]);
 
-    const block = new Block({
+    block = new Block({
       hash,
       height,
       bits: rpcblock.bits,
@@ -35,7 +36,7 @@ async function syncBlocks(start, stop, clean = false) {
       diff: rpcblock.difficulty,
       merkle: rpcblock.merkleroot,
       nonce: rpcblock.nonce,
-      prev: rpcblock.prevblockhash ? rpcblock.prevblockhash : 'GENESIS',
+      prev: (rpcblock.height == 1) ? 'GENESIS' : rpcblock.previousblockhash ? rpcblock.previousblockhash : 'UNKNOWN',
       size: rpcblock.size,
       txs: rpcblock.tx ? rpcblock.tx : [],
       ver: rpcblock.version
