@@ -12,7 +12,7 @@ const Budget = require('../model/budget');
 
 /**
 * proposal function
-* get proposal lists.
+* get proposals list.
 */
 async function syncPR() {
 

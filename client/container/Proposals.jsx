@@ -100,14 +100,13 @@ class Proposal extends Component {
         <HorizontalRule
           select={ select }
           title="Proposals" />
-        <p>If score is more than 10% of count of masternode, the proposal will pass.</p>
         <Table
           cols={ this.state.cols }
           data={ this.state.prs.map((pr) => ({
               ...pr,
               url: (
                 <a href={pr.url} target="_blank">
-                  {`${ pr.url.substr(0, 20) }...` }
+                  { `Link` }
                 </a>
               ),
               address: (
@@ -115,7 +114,15 @@ class Proposal extends Component {
                   { `${ pr.address.substr(0, 20) }...` }
                 </Link>
               ),
-              score: ( pr.yays - pr.nays )
+              score: (
+                <p><font color="green">
+                  { `${ pr.yays}` }
+                </font>/<font color="red">
+                  { `${ pr.nays}` }
+                </font>
+                  { ` ${ pr.score.substr(0, 3)*100 }%` }
+                </p>
+              )
           }))} />
         <Pagination
           current={ this.state.page }
@@ -132,4 +139,4 @@ const mapDispatch = dispatch => ({
   getPRs: query => Actions.getPRs(query)
 });
 
-export default connect(null, mapDispatch)(Proposal);
+export default connect(null, mapDispatch)(Proposals);
