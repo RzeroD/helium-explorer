@@ -49,16 +49,6 @@ const APIdata = [
           path: '/api/masternode/average'
         },
         {
-          name: 'getProposalsList',
-          info: 'Returns list of proposals.',
-          path: '/api/proposals'
-        },
-        {
-          name: 'getProposalByName',
-          info: 'Returns proposal information by Name.',
-          path: '/api/proposal/HeliumChain'
-        },
-        {
           name: 'getPeer',
           info: 'Returns peer information.',
           path: '/api/peer'

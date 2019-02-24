@@ -81,7 +81,7 @@ a {
   </head>
   <body>
     <div class="logo">
-      <a href="https://heliumchain.org">
+      <a href="https://www.heliumpay.com/">
         <img src="https://bulwarkcrypto.com/wp-content/uploads/2018/06/logo@2x.png" title="Helium Crypto"/>
       </a>
       </div>
@@ -89,7 +89,7 @@ a {
         <img src="https://media.giphy.com/media/vIDsZm5DMZ5Ha/giphy.gif" title="Sad Explorer."/>
       <h1>Maintenance</h1>
       <p>Helium Explorer is not available at this moment.<br/>Please check back later.</p><br/>
-  <a href="https://heliumchain.org" class="button">Back to Main</a>
+  <a href="https://www.heliumpay.com/" class="button">Back to Main</a>
       </div>
   </body>
 </html>
@@ -97,7 +97,7 @@ a {
 });
 // Start the server.
 app.listen(config.api.port, () => {
-  console.log(`Helium Explorer running on port ${ config.api.port }`);
+  console.log(`BlocEx running on port ${ config.api.port }`);
 });
 
 // Export for testing.

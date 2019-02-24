@@ -16,7 +16,7 @@ import Select from '../component/Select';
 
 import { PAGINATION_PAGE_SIZE } from '../constants';
 
-class Proposal extends Component {
+class Proposals extends Component {
   static propTypes = {
     getPRs: PropTypes.func.isRequired
   };
