@@ -83,29 +83,34 @@ async function vout(rpctx, blockHeight) {
     const utxo = [];
     rpctx.vout.forEach((vout) => {
         var address;
-        if (vout.scriptPubKey.type == 'nulldata') {
-          address = "OP_RETURN "+hexToString(vout.scriptPubKey.asm.substring(10))
-        }else if (vout.scriptPubKey.type == 'zerocoinmint') {
-          address = 'ZERO_COIN_MINT'
-        } else if (vout.scriptPubKey.type == 'nonstandard') {
-          address = 'NON_STANDARD'
-        } else {
-          address = vout.scriptPubKey.addresses[0]
-      }
+        if (vout.value <= 0) {
+          return;
+        }
 
-      const to = {
-        blockHeight,
-        address: address,
-        n: vout.n,
-        value: vout.value
-      };
+        if (vout.scriptPubKey.type == 'zerocoinmint') {
+          // zerocoin
+            address = 'ZEROCOIN_MINT_POOL'
+        } else if (vout.scriptPubKey.type == 'nulldata') {
+          // fee of proposal
+            address = 'FEE_OF_SUBMISSION_PROPOSAL'
+        }  else {
+          // normal
+            address = vout.scriptPubKey.addresses[0]
+        }
 
-      txout.push(to);
-      utxo.push({
-        ...to,
-        _id: `${ rpctx.txid }:${ vout.n }`,
-        txId: rpctx.txid
-      });
+        const to = {
+          blockHeight,
+          address: address,
+          n: vout.n,
+          value: vout.value
+        };
+
+        txout.push(to);
+        utxo.push({
+          ...to,
+          _id: `${ rpctx.txid }:${ vout.n }`,
+          txId: rpctx.txid
+        });
     });
 
     // Insert unspent transactions.
