@@ -173,10 +173,10 @@ EOL
     cat > mycron << EOL
 */1 * * * * cd /home/explorer/blockex && ./script/cron_block.sh >> ./tmp/block.log 2>&1
 */1 * * * * cd /home/explorer/blockex && /usr/bin/nodejs ./cron/masternode.js >> ./tmp/masternode.log 2>&1
+*/1 * * * * cd /home/block/helium-explorer && /usr/bin/nodejs ./cron/budget.js >> ./tmp/budget.log 2>&1
 */1 * * * * cd /home/explorer/blockex && /usr/bin/nodejs ./cron/peer.js >> ./tmp/peer.log 2>&1
 */1 * * * * cd /home/explorer/blockex && /usr/bin/nodejs ./cron/rich.js >> ./tmp/rich.log 2>&1
 */5 * * * * cd /home/explorer/blockex && /usr/bin/nodejs ./cron/coin.js >> ./tmp/coin.log 2>&1
-*/5 * * * * cd /home/block/helium-explorer && /usr/bin/nodejs ./cron/budget.js >> ./tmp/budget.log 2>&1
 EOL
     crontab mycron
     rm -f mycron
