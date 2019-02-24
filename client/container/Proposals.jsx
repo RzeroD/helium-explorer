@@ -33,7 +33,7 @@ class Proposals extends Component {
         { key: 'total_amount', title: 'Total' },
         { key: 'start_height', title: 'Start' },
         { key: 'end_height', title: 'End' },
-        { key: 'score', title: 'Votes' },
+        { key: 'votes', title: 'Votes' },
       ],
       error: null,
       loading: true,
@@ -115,7 +115,7 @@ class Proposals extends Component {
                   { `${ pr.address.substr(0, 20) }...` }
                 </Link>
               ),
-              score: (
+              votes: (
                 <p><font color="green">
                   { `${ pr.yays}` }
                 </font>/<font color="red">
