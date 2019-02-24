@@ -125,7 +125,7 @@ class Proposals extends Component {
                 </font></p>
               )
             };
-          }), ['start']) } />
+          }), ['start_height']) } />
         <Pagination
           current={ this.state.page }
           className="float-right"
