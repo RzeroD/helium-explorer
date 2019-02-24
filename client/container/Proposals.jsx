@@ -31,8 +31,7 @@ class Proposal extends Component {
         { key: 'address', title: 'Address' },
         { key: 'monthly_amount', title: 'Monthly' },
         { key: 'total_amount', title: 'Total' },
-        { key: 'start_height', title: 'Start' },
-        { key: 'end_height', title: 'End' },
+        { key: 'end_height', title: 'End Block' },
         { key: 'score', title: 'Votes' },
       ],
       error: null,
@@ -103,7 +102,7 @@ class Proposal extends Component {
           title="Proposals" />
         <Table
           cols={ this.state.cols }
-          data={ sortBy(this.state.prs.map((pr) => ({
+          data={ this.state.prs.map((pr) => ({
               ...pr,
               url: (
                 <a href={pr.url} target="_blank">
@@ -120,9 +119,11 @@ class Proposal extends Component {
                   { `${ pr.yays}` }
                 </font>/<font color="red">
                   { `${ pr.nays}` }
-                </font></p>
+                </font>
+                  { ` ${ pr.score.substr(0, 3)*100 }%` }
+                </p>
               )
-          }), ['start']) )} />
+          }))} />
         <Pagination
           current={ this.state.page }
           className="float-right"
