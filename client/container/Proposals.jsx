@@ -104,6 +104,8 @@ class Proposals extends Component {
         <Table
           cols={ this.state.cols }
           data={ sortBy(this.state.prs.map((pr) => {
+
+            return {
               ...pr,
               url: (
                 <a href={pr.url} target="_blank">
@@ -122,7 +124,8 @@ class Proposals extends Component {
                   { `${ pr.nays}` }
                 </font></p>
               )
-          }), ['start']) )} />
+            };
+          }), ['start']) } />
         <Pagination
           current={ this.state.page }
           className="float-right"
