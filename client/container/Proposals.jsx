@@ -103,7 +103,7 @@ class Proposals extends Component {
           title="Proposals" />
         <Table
           cols={ this.state.cols }
-          data={ sortBy(this.state.prs.map((pr) => ({
+          data={ sortBy(this.state.prs.map((pr) => {
               ...pr,
               url: (
                 <a href={pr.url} target="_blank">
