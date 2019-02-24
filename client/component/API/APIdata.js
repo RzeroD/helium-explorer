@@ -21,7 +21,7 @@ const APIdata = [
         {
           name: 'getCoin',
           info: 'Returns coin information.',
-          path: '/api/coin/'
+          path: '/api/coin'
         },
         {
           name: 'getCoinHistory',
@@ -47,6 +47,16 @@ const APIdata = [
           name: 'getMasternodeAverage',
           info: 'Returns the average payment for a masternode vs 24 hours.',
           path: '/api/masternode/average'
+        },
+        {
+          name: 'getProposalsList',
+          info: 'Returns list of proposals.',
+          path: '/api/proposals'
+        },
+        {
+          name: 'getProposalByName',
+          info: 'Returns proposal information by Name.',
+          path: '/api/proposal/HeliumChain'
         },
         {
           name: 'getPeer',

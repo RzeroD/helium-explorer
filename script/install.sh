@@ -166,6 +166,7 @@ EOL
     nodejs ./cron/block.js
     nodejs ./cron/coin.js
     nodejs ./cron/masternode.js
+    nodejs ./cron/budget.js
     nodejs ./cron/peer.js
     nodejs ./cron/rich.js
     clear

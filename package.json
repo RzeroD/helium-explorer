@@ -1,9 +1,9 @@
 {
-  "name": "blockex",
-  "version": "0.0.1",
-  "description": "Cryptocurrency block explorer",
+  "name": "Helium-Explorer",
+  "version": "1.0.0",
+  "description": "Helium block explorer",
   "main": "./public",
-  "repository": "git@github.com:dustinengle/blockex.git",
+  "repository": "git@github.com:rzerod/helium-explorer.git",
   "author": "Dustin Engle <dustin@dustinengle.com>",
   "license": "MIT",
   "scripts": {
