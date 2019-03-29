@@ -1,4 +1,4 @@
-const _ = require('lodash')
+const _ = require('lodash');
 require('babel-polyfill');
 require('../lib/cron');
 const config = require('../config');
@@ -30,15 +30,15 @@ async function syncPeer() {
 
     const p = new Peer({
       _id: parts[0],
-      country: geoip.country,
-      countryCode: geoip.countryCode,
+      country: geoip.country_name,
+      countryCode: geoip.country_code,
       createdAt: date,
       ip: parts[0],
-      lat: geoip.lat,
-      lon: geoip.lon,
+      lat: geoip.latitude,
+      lon: geoip.longitude,
       port: parts[1] ? parts[1] : 0,
       subver: peer.subver,
-      timeZone: geoip.region,
+      timeZone: geoip.region_name,
       ver: peer.version
     });
 

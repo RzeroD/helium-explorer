@@ -21,7 +21,7 @@ const config = {
     'pass': 'Explorer!1'
   },
   'freegeoip': {
-    'api': 'https://extreme-ip-lookup.com/json/'
+    'api': 'https://reallyfreegeoip.org/json/''
   },
   'rpc': {
     'host': '127.0.0.1',
