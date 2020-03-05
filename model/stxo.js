@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+//const upsertMany = require('@meanie/mongoose-upsert-many');
+//mongoose.plugin(upsertMany);
 /**
 * STXO
 *
