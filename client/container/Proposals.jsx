@@ -100,7 +100,7 @@ class Proposals extends Component {
       <div>
         <HorizontalRule
           select={ select }
-          title="Current proposals" />
+          title="Proposals" />
         <Table
           cols={ this.state.cols }
           data={ sortBy(this.state.prs.map((pr) => {

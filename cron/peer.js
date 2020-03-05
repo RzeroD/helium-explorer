@@ -1,4 +1,3 @@
-const _ = require('lodash');
 require('babel-polyfill');
 require('../lib/cron');
 const config = require('../config');
@@ -7,6 +6,7 @@ const fetch = require('../lib/fetch');
 const { forEach } = require('p-iteration');
 const locker = require('../lib/locker');
 const moment = require('moment');
+const _ = require('lodash');
 // Models.
 const Peer = require('../model/peer');
 
